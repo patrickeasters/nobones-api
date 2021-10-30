@@ -8,7 +8,7 @@ This app provides several endpoints that can be used depending on your needs.
 The `GET /` endpoint returns a JSON object with a single boolean: `bones`. This will be true on "bones" days, and false on "no bones" days.
 
 ```
-> https nobones.today
+> https api.nobones.today
 HTTP/1.1 200 OK
 Content-Length: 15
 Content-Type: application/json; charset=UTF-8
@@ -23,7 +23,7 @@ Date: Sat, 30 Oct 2021 12:44:53 GMT
 If parsing JSON is too much, the `GET /bones` endpoint is for you. This will return an empty `200` response if it's a "bones day." Likewise, on "no bones" days, this will return a `404` status.
 
 ```
-> https nobones.today/bones
+> https api.nobones.today/bones
 HTTP/1.1 200 OK
 Content-Length: 0
 Date: Sat, 30 Oct 2021 12:52:45 GMT
@@ -34,7 +34,7 @@ Date: Sat, 30 Oct 2021 12:52:45 GMT
 The `POST /admission` endpoint is a Kubernetes [validating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) that will only authorize requests on "bones days." This is super helpful if you wanted to easily prevent application deployments on "no bones" days.
 
 ```
-> https POST nobones.today/admission @test/request.json
+> https POST api.nobones.today/admission @test/request.json
 HTTP/1.1 200 OK
 Content-Length: 201
 Content-Type: application/json; charset=UTF-8
